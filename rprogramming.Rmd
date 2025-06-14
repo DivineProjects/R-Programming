@@ -1,0 +1,402 @@
+---
+title: "R Programming"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+# R Programming
+
+## Introduction
+
+> The `iris` dataset includes measurements of 150 iris flowers from three species.
+>This report combines visualizations, and statistical methods for an end-to-end analysis.
+
+## 1. Inspecting the Dataset
+
+> First, let's get a feel for the data
+
+### 1.1 Loading Dataset
+
+> In R, there are many ways to load data, depending on the format of your data.
+> Here we will load data from the dataset that come with R using the `library()` method
+
+```{r}
+library(datasets) 
+```
+
+### 1.2 View the first few rows of the dataset
+
+> `head(iris)` will show you the first 6 rows, showing the column names and a sample of the data.
+
+```{r}
+head(iris)
+```
+
+### 1.3 Get the structure of the dataset (data types, number of observations/variables)
+
+> `str()` show the type of data frame, number of observations (rows) and the number of the variables (columns).
+> It will also show the data type of each column (e.g., num for numeric, Factor for species).
+
+```{r}
+str(iris)
+```
+
+### 1.4 Get the column names
+
+> The `name()` displays the colunm headings for the dataset
+
+```{r}
+names(iris)
+```
+
+### 1.5 Get summary statistics for each column
+
+> The `summary()` provides the minimum (min), 1st quartile, median, mean, 3rd quartile, and maximum (max) for the numerical columns, and the counts for each column (level of the Species factor).
+
+```{r}
+summary(iris)
+```
+
+### 1.6 Descriptive Statistics
+
+> We examine summary statistics to understand the central tendency and dispersion of each numeric variable.
+> Summary of numeric features to understand central tendency and spread.
+> Loads the psych package, which provides more detailed descriptive statistics.
+
+```{r}
+summary(iris)
+library(psych)
+describe(iris[, 1:4])
+```
+
+### 1.7 Group-wise Summary by Species
+
+> Compare mean feature values across species.
+
+```{r}
+aggregate(. ~ Species, data = iris[, 1:5], mean)
+```
+
+## 2. Visualisation
+
+> To visualise the data we use the `plot()` method.
+
+### 2.1 Creating a Basic Scatter Plot
+
+> A scatter plot showing the relationship between Sepal Length and Petal Length, colored by species.
+
+```{r}
+plot(iris$Petal.Length)
+```
+
+### 2.1.1 Customising the Plot
+
+> The `plot()` function has many arguments you can use to customize your graph.
+> Here are some of the most common ones:
+
+-   main: Sets the main title of the plot.
+-   xlab: Sets the label for the x-axis.
+-   ylab: Sets the label for the y-axis.
+-   col: Changes the color of the points.
+-   pch: Changes the plotting symbol (e.g., circles, triangles, squares).
+-   cex: Changes the size of the plotting symbols.
+-   type: Specifies the type of plot.
+-   "p" for points (default)
+-   "l" for lines
+-   "b" for both points and lines
+-   "o" for both points and lines, overlaid
+-   "h" for histogram-like vertical lines
+-   "s" for stair steps
+-   "n" for no plotting (useful for setting up axes first)
+
+```{r}
+plot(iris$Sepal.Length, iris$Petal.Length,
+     main = "Sepal vs Petal Length",
+     xlab = "Sepal Length",
+     ylab = "Petal Length",
+     col = "blue",
+     pch = 16
+)
+
+```
+
+### 2.1.2 Further Customisation Plots
+
+> To reveal how Petal Length varies with Sepal Length across species.
+> Helpful in spotting clusters or patterns.
+> Sepal Length (X) vs Petal Length (Y).
+> Points are colored by Species (setosa, versicolor, virginica).
+> A legend shows which color corresponds to which species.
+
+```{r}
+plot(iris$Sepal.Length, iris$Petal.Length,
+     col = iris$Species,
+     pch = 16,
+     main = "Sepal vs Petal Length by Species",
+     xlab = "Sepal Length",
+     ylab = "Petal Length")
+    legend("topleft", legend = levels(iris$Species), col = 1:3, pch = 16)
+```
+
+### 2.2 Box Plot
+
+> Quickly compare the central tendency and spread of Petal Length by species.
+> A boxplot displays the distribution of Petal Length across the three species, highlighting medians and variability.
+> Our box plot shows the Petal Length by Species
+
+```{r}
+boxplot(Petal.Length ~ Species, data = iris, col = c("lightblue", "lightgreen", "lightpink"))
+
+```
+
+### 2.3 Histogram
+
+> A histogram helps visualize the frequency distribution of Sepal Width for all flowers.
+> Checks if Sepal Width is normally distributed or skewed, and to see the spread of values.
+> Below is the Histogram of Sepal Width
+
+```{r}
+hist(iris$Sepal.Width, col = "skyblue", border = "white")
+```
+
+### 2.4 Pairwise Scatterplots (Scatterplot Matrix)
+
+> This matrix of scatterplots shows pairwise relationships among all four numeric variables, with species color-coded
+
+```{r}
+pairs(iris[1:4], main = "Pairwise Plot", pch = 21, bg = c("red", "green3", "blue")[unclass(iris$Species)])
+```
+
+### 3.0 Cleaner Visualization
+
+> A `ggplot2()` version of the scatter plot offering cleaner visualization and built-in legends.
+
+```{r}
+library(ggplot2)
+
+ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
+  geom_point(size = 2) +
+  labs(title = "Petal vs Sepal Length", x = "Sepal Length", y = "Petal Length") +
+  theme_minimal()
+```
+
+### 3.1 Density Plot
+
+> A density plot compares the distribution of Sepal Width across species using smooth curves.
+
+```{r}
+ggplot(iris, aes(x = Sepal.Width, fill = Species)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Density Plot of Sepal Width") +
+  theme_minimal()
+```
+
+### 3.2 Interactive Visualization
+
+> You can use the `plotly()` package:
+
+```{r}
+### install.packages("plotly")
+library(plotly)
+plot_ly(iris, x = ~Sepal.Length, y = ~Petal.Length,
+        type = 'scatter', mode = 'markers',
+        color = ~Species)
+```
+
+## 🔎 Statistical Analysis
+
+### 4.0 Correlation Matrix
+
+> We compute correlations between numeric variables to assess linear relationships.
+
+```{r}
+cor(iris[, 1:4])
+```
+
+### 4.1 Correlation Heatmap
+
+```{r}
+cor_matrix <- cor(iris[, 1:4])
+heatmap(cor_matrix, col = colorRampPalette(c("white", "blue"))(20),
+        main = "Correlation Matrix of Iris Features")
+```
+
+### 4.3 ANOVA
+
+> ANOVA tests if the mean Petal Length is significantly different across the three species.
+> We will use the `aov()` function
+
+```{r}
+anova_model <- aov(Petal.Length ~ Species, data = iris)
+summary(anova_model)
+```
+
+### 4.4 Post-hoc Test (Tukey HSD)
+
+> After an ANOVA test tells us that at least one group mean is different, it does not tell us which groups differ.
+> This is where Tukey’s Honest Significant Difference (HSD) test `TukeyHSD()` comes in.
+
+```{r}
+anova_model <- aov(Petal.Length ~ Species, data = iris)
+TukeyHSD(anova_model)
+```
+
+### 4.5 Linear Regression
+
+> We fit a linear model using the `lm()` to predict Petal Length from Sepal Length and evaluate its explanatory power
+
+```{r}
+lm_model <- lm(Petal.Length ~ Sepal.Length, data = iris)
+summary(lm_model)
+```
+
+### 4.6 Regression Diagnostic Plots
+
+```{r}
+plot(lm_model)
+```
+
+### 4.7 Principal Component Analysis (PCA)
+
+> PCA function `prcomp()` reduces dimensionality while preserving as much variance as possible, helping us visualize data structure.
+
+#### 4.7.1 PCA summary
+
+```{r}
+pca <- prcomp(iris[, 1:4], scale. = TRUE)
+summary(pca)
+
+```
+
+#### 4.7.2 Scree Plot
+
+> The scree plot shows the variance explained by each principal component.
+
+```{r}
+plot(pca, type = "l", main = "Scree Plot of PCA")
+```
+
+#### 4.7.3 PCA Biplot
+
+> A biplot shows both the scores of each sample and the contribution of each variable.
+
+```{r}
+biplot(pca, col = c("gray", "red"))
+```
+
+#### 4.4 PCA Visualization with ggplot2
+
+> A clearer visualization of PCA results using the first two principal components, colored by species.
+
+```{r}
+pca_df <- as.data.frame(pca$x)
+pca_df$Species <- iris$Species
+
+library(ggplot2)
+ggplot(pca_df, aes(x = PC1, y = PC2, color = Species)) +
+  geom_point(size = 2) +
+  labs(title = "PCA of Iris Dataset", x = "PC1", y = "PC2") +
+  theme_minimal()
+```
+
+
+## 5.0 Loading from External File
+
+### 5.1 Installs pacman ("package manager") if needed
+```{r}
+if (!require("pacman")) install.packages("pacman")
+```
+
+### 5.2 Use pacman to load add-on packages as desired
+```{r}
+pacman::p_load(pacman, rio) 
+```
+
+### 5.3 Loading RIO 
+```{r}
+getwd()
+install.packages("rio")
+library(rio)
+```
+
+### 5.4 Importing CSV
+```{r}
+rio_csv <- import("mbb.csv")
+head(rio_csv)
+```
+
+### 5.5 Importing TXT
+```{r}
+rio_txt <- import("mbb.txt")
+head(rio_txt)
+```
+
+### 5.6 Excel XLSX
+```{r}
+rio_xlsx <- import("mbb.xlsx")
+head(rio_xlsx)
+```
+
+### 5.7 Data Viewer
+> This line opens the help page for the `View()` function in R.
+It’s not needed in a report/output — it's for interactive help in the console.
+
+> This opens the `rio_csv()` dataset in a spreadsheet-style viewer window (only works in interactive RStudio, not when rendering .Rmd).
+
+
+```{r}
+?View
+View(rio_csv)
+```
+
+### 5.8 Read Table for TXT files 
+> R's built-in function for text files (used by rio)
+
+> `read.table()` Reads tabular data from a text file (default separator is any whitespace).
+header = TRUE: Tells R the first row contains column names.
+
+```{r}
+r_txt1 <- read.table("mbb.txt", header = TRUE)
+
+```
+### 5.9 Customer Reader for TXT file
+> `sep = "\t"` Specifies the tab character as the field separator — required for tab-separated files (.tsv or .txt with tabs).
+
+> \t is for tabs, sep = "," for commas. R converts missing
+ to "NA"
+ 
+```{r}
+r_txt2 <- read.table("mbb.txt", 
+  header = TRUE, 
+  sep = "\t")
+
+```
+
+### 5.10 Read CSV Files
+>  R's built-in function for csv files (also used by rio)
+
+> CSV files don't have to specify delimiters for missing data
+> because CSV means "comma separated values"
+> open using `read.csv()` fuction
+
+```{r}
+trends.csv <- read.csv("mbb.csv", header = TRUE)
+```
+
+
+
+## Key takeaways
+
+> We combined visual and statistical tools to analyze the classic iris dataset.
+
+- Petal Length differs significantly by species (ANOVA).
+
+- Sepal Length is a strong predictor of Petal Length (Regression).
+
+- PCA helps reduce dimensions while revealing structure across species.
+
+- This workflow is a powerful template for analyzing other classification datasets.
