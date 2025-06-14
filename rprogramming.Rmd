@@ -387,6 +387,72 @@ r_txt2 <- read.table("mbb.txt",
 trends.csv <- read.csv("mbb.csv", header = TRUE)
 ```
 
+---
+title: "R Language Feature Demonstration"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output: html_document
+
+# Data Types
+
+We'll create variables using different R data types:
+
+- **Numeric**
+- **Character**
+- **Logical**
+- **Factor**
+- **List**
+
+```{r}
+# Numeric
+age <- c(25, 30, 22)
+
+# Character
+names <- c("Alice", "Bob", "Carol")
+
+# Logical
+is_student <- c(TRUE, FALSE, TRUE)
+
+# Factor
+grades <- factor(c("A", "B", "A"), levels = c("A", "B", "C", "D", "F"))
+
+# Display types
+list_types <- list(
+  Age = typeof(age),
+  Names = typeof(names),
+  StudentStatus = typeof(is_student),
+  Grades = typeof(grades)
+)
+
+list_types
+
+students_df <- data.frame(
+  Name = names,
+  Age = age,
+  Student = is_student,
+  Grade = grades,
+  stringsAsFactors = FALSE
+)
+
+# Show the data frame
+knitr::kable(students_df, caption = "Student Information Data Frame")
+
+info_list <- list(
+  Names = names,
+  Ages = age,
+  Status = is_student
+)
+
+# Loop through and print each component
+for (item in names(info_list)) {
+  cat("\n🔹", item, ":\n")
+  print(info_list[[item]])
+}
+
+students_df$Adult <- students_df$Age >= 25
+
+# Updated data frame
+knitr::kable(students_df, caption = "Updated Data Frame with 'Adult' Column")
 
 
 ## Key takeaways
