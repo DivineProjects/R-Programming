@@ -1,5 +1,11 @@
 # R-Programming
 
+## File directory
+* use this rprogramming.Rmd file link [rprogramming.Rmd](https://github.com/DivineProjects/R-Programming/blob/main/rprogramming.Rmd)
+
+* to view the html report pages use the rprogramming.html file
+
+
 ## 📌 Overview
 
 As a software engineer aiming to broaden my data science skills, I developed a set of scripts in R to analyze and visualize structured data. My goal was to gain hands-on experience with R's syntax and statistical functions, while also producing meaningful visual and numerical insights from real-world datasets.
