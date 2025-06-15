@@ -10,7 +10,107 @@ editor_options:
 
 # R Programming
 
-## Introduction
+## 0.0 Data Types
+
+We'll create variables using different R data types:
+
+- **Numeric**
+- **Character**
+- **Logical**
+- **Factor**
+- **List**
+
+
+### 0.1 Numeric
+> The c() function is used to combine multiple values into a single vector.
+
+> Purpose: To store quantitative values that can be used for arithmetic operations.
+This line creates a numeric vector named age.
+It contains three values: 25, 30, and 22, which represent ages.
+
+```{r}
+age <- c(25, 30, 22)
+```
+
+### 0.2 Character
+> The values "Alice", "Bob", and "Carol" are strings (text)
+
+```{r}
+names <- c("Alice", "Bob", "Carol")
+```
+
+
+### 0.3 Logical
+> This creates a logical (boolean) vector.
+The values represent whether each person is a student or not.
+TRUE and FALSE are R’s built-in logical constants.
+
+```{r}
+is_student <- c(TRUE, FALSE, TRUE)
+```
+
+### 0.4 Factor
+> Factors are ideal for data analysis involving groups or categories (e.g., grades, gender, regions).
+This creates a factor vector, which is used for categorical data.
+> R treats factors as enumerated types, which can be ordered or unordered.
+> You’ve explicitly set the levels (categories) from A to F, even though only A and B are used here.
+
+```{r}
+grades <- factor(c("A", "B", "A"), levels = c("A", "B", "C", "D", "F"))
+```
+
+### 0.5 Display types
+```{r}
+list_types <- list(
+  Age = typeof(age),
+  Names = typeof(names),
+  StudentStatus = typeof(is_student),
+  Grades = typeof(grades)
+)
+
+list_types
+```
+
+```{r}
+students_df <- data.frame(
+  Name = names,
+  Age = age,
+  Student = is_student,
+  Grade = grades,
+  stringsAsFactors = FALSE
+)
+
+```
+
+
+### 0.6 Show the data frame
+```{r}
+knitr::kable(students_df, caption = "Student Information Data Frame")
+
+info_list <- list(
+  Names = names,
+  Ages = age,
+  Status = is_student
+)
+```
+
+
+### 0.7 Loop through and print each component
+```{r}
+for (item in names(info_list)) {
+  cat("\n🔹", item, ":\n")
+  print(info_list[[item]])
+}
+
+students_df$Adult <- students_df$Age >= 25
+```
+
+### 0.7 Updated data frame
+```{r}
+knitr::kable(students_df, caption = "Updated Data Frame with 'Adult' Column")
+```
+
+## Data Analysis
 
 > The `iris` dataset includes measurements of 150 iris flowers from three species.
 >This report combines visualizations, and statistical methods for an end-to-end analysis.
@@ -388,70 +488,7 @@ trends.csv <- read.csv("mbb.csv", header = TRUE)
 ```
 
 
-# Data Types
-
-We'll create variables using different R data types:
-
-- **Numeric**
-- **Character**
-- **Logical**
-- **Factor**
-- **List**
-
-```{r}
-# Numeric
-age <- c(25, 30, 22)
-
-# Character
-names <- c("Alice", "Bob", "Carol")
-
-# Logical
-is_student <- c(TRUE, FALSE, TRUE)
-
-# Factor
-grades <- factor(c("A", "B", "A"), levels = c("A", "B", "C", "D", "F"))
-
-# Display types
-list_types <- list(
-  Age = typeof(age),
-  Names = typeof(names),
-  StudentStatus = typeof(is_student),
-  Grades = typeof(grades)
-)
-
-list_types
-
-students_df <- data.frame(
-  Name = names,
-  Age = age,
-  Student = is_student,
-  Grade = grades,
-  stringsAsFactors = FALSE
-)
-
-# Show the data frame
-knitr::kable(students_df, caption = "Student Information Data Frame")
-
-info_list <- list(
-  Names = names,
-  Ages = age,
-  Status = is_student
-)
-
-# Loop through and print each component
-for (item in names(info_list)) {
-  cat("\n🔹", item, ":\n")
-  print(info_list[[item]])
-}
-
-students_df$Adult <- students_df$Age >= 25
-
-# Updated data frame
-knitr::kable(students_df, caption = "Updated Data Frame with 'Adult' Column")
-
-
 ## Key takeaways
-
 > We combined visual and statistical tools to analyze the classic iris dataset.
 
 - Petal Length differs significantly by species (ANOVA).
