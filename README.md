@@ -14,7 +14,7 @@ The software I wrote demonstrates how to import, clean, and analyze data using R
 
 This project helped me understand the strengths of R in statistical modeling, data wrangling, and rapid visualization.
 ## Video Demo
-[Software Demo Video](https://teams.microsoft.com/l/meetingrecap?driveId=b%21rYSbpyc59UmqpjTOXwwJE1JrpA83JDFPlJSDxFsVxNU8Ir6ZoSmQS6iYo5Vv_D4E&driveItemId=01KPAHYJGR5SLCUDFDWFEIROV56EH5M5ME&sitePath=https%3A%2F%2Fbyupathwayworldwideprod-my.sharepoint.com%2F%3Av%3A%2Fg%2Fpersonal%2Fdjigu_byupathway_edu%2FEdHslioMo7FIiLq98Q_WdYQBlK7B6NX_ZgrVvnq1kIfk3A&fileUrl=https%3A%2F%2Fbyupathwayworldwideprod-my.sharepoint.com%2Fpersonal%2Fdjigu_byupathway_edu%2FDocuments%2FRecordings%2FDivine-20250601_030613-Meeting%2520Recording.mp4%3Fweb%3D1&threadId=19%3Ameeting_ZGMwNjU0ZmItMjBjYy00YjhkLWJjMzAtOTk5MTliM2JlYmE5%40thread.v2&organizerId=92c31936-c937-45e7-a261-4fe74b92ebd8&tenantId=42804ae1-d2e9-40b7-a4a3-45811234298b&callId=312db74f-4e2a-4b96-a9db-5fe89e9a519f&threadType=Meeting&meetingType=MeetNow&subType=RecapSharingLink_RecapCore)
+[Software Demo Video](https://byupathwayworldwideprod-my.sharepoint.com/:v:/g/personal/djigu_byupathway_edu/EUCBz0IHsEFIiBdJrvDdCyABSr5OPWDW_xPf3WHBCo0bbw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UaasrC)
 
 ---
 
