@@ -14,7 +14,8 @@ The software I wrote demonstrates how to import, clean, and analyze data using R
 
 This project helped me understand the strengths of R in statistical modeling, data wrangling, and rapid visualization.
 ## Video Demo
-[Software Demo Video](https://byupathwayworldwideprod-my.sharepoint.com/:v:/g/personal/djigu_byupathway_edu/EUCBz0IHsEFIiBdJrvDdCyABSr5OPWDW_xPf3WHBCo0bbw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=UaasrC)
+[Software Demo Video](https://byupathwayworldwideprod-my.sharepoint.com/:v:/g/personal/djigu_byupathway_edu/EakaZ59mmm1Km_GM3jzsAhQBzkDDwuF6iBwLUS0UI-dMjQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=NG3CKt)
+
 
 ---
 
